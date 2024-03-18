@@ -18,25 +18,51 @@ public:
 		}
 
 		if (StringUtil::isNumber(expression)) {
-			return expression;
+			if (stoi(expression) < limit)
+				return expression;
+			else
+				throw invalid_argument("INVALID_EXPRESSION: Invalid expression.");
 		} 
 
 		if (StringUtil::contains(expression, '-')) {
 			vector<string> tokens = StringUtil::tokenize(expression, '-');
-			return StringUtil::getRange(stoi(tokens[0]), stoi(tokens[1]));
+
+			if (StringUtil::isNumber(tokens[0]) and StringUtil::isNumber(tokens[1])) {
+				int start = stoi(tokens[0]);
+				int end = stoi(tokens[1]);
+
+				if (start < limit and end < limit) {
+					return StringUtil::getRange(stoi(tokens[0]), stoi(tokens[1]));
+				} else {
+					throw invalid_argument("INVALID_EXPRESSION: Range is out of bound.");
+				}
+			} else {
+				throw invalid_argument("INVALID_EXPRESSION: Range values are not numbers.");
+			}
 		}
 
 		if (StringUtil::contains(expression, ',')) {
 			vector<string> tokens = StringUtil::tokenize(expression, ',');
+
+			for (int i = 0; i < tokens.size(); i++) {
+				if (!StringUtil::isNumber(tokens[i])) {
+					throw invalid_argument("INVALID_EXPRESSION: Values are not valid numbers");
+				}
+			}
 			return StringUtil::toString(tokens);
 		}
 
 		if (StringUtil::contains(expression, "*/")) {
-			int step = stoi(expression.substr(expression.find('/')+1));
-			return this->stepRange(step, limit);
+			string step = expression.substr(expression.find('/')+1);
+
+			if (StringUtil::isNumber(step)) {
+				return this->stepRange(stoi(step), limit);
+			} else {
+				throw invalid_argument("INVALID_EXPRESSION: Given step is not a valid number");
+			}
 		}
 		
-		return expression;
+		throw invalid_argument("INVALID_EXPRESSION: Try again with a valid cron expression.");
 	}
 
 private:

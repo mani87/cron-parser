@@ -36,14 +36,19 @@ void printCronDescription(vector<pair<string, string> > descriptions) {
 
 int main(int argc, char * argv[]) {
 
-    string cex = argv[1];
+    try {
+        string cex = argv[1];
 
-    CronParser cronParser;
-    ICronParser* parser = &cronParser;
-    CronExpression cronEx = parser->parse(cex);
+        CronParser cronParser;
+        ICronParser* parser = &cronParser;
+        CronExpression cronEx = parser->parse(cex);
 
-    vector<pair<string, string> > descriptions = getDescriptions(cronEx);
-    printCronDescription(descriptions);
+        vector<pair<string, string> > descriptions = getDescriptions(cronEx);
+        printCronDescription(descriptions);
+    } catch (exception& e) {
+        cerr << "Error: " << e.what() << std::endl;
+        return -1;
+    }
 
     return 0;
 }

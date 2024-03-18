@@ -25,6 +25,10 @@ public:
 			parts.push_back(part);
 		}
 
+		if (parts.size() < 6) {
+			throw invalid_argument("Invalid cron expression, please enter a valid expression.");
+		}
+
 		CronExpression cronEx(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
 		return cronEx;
 	}
