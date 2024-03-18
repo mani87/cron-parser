@@ -38,9 +38,21 @@ command       /usr/bin/find
     ./parser "*/15 0 1,15 * 1-5 /usr/bin/find"
     ```
 
-### Sample output
+#### Sample output
 
 <img width="780" alt="Screenshot 2024-03-18 at 10 03 45" src="https://github.com/mani87/cron-parser/assets/88872955/e5208ed9-0673-4b35-91d8-5132d12c8f18">
 
+### How to run test cases?
+
+1. Compile the test cases
+   ```
+   g++ tests/CronExpressionTests.cpp utils/StringUtil.cpp -o test
+   ```
+2. Run test cases
+   ```
+   ./test
+   ```
+#### Sample output
+<img width="706" alt="Screenshot 2024-03-18 at 14 07 04" src="https://github.com/mani87/cron-parser/assets/30254676/bdf17f74-266f-4335-80d4-4d2810136e3a">
 
 
