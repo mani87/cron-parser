@@ -42,6 +42,10 @@ command       /usr/bin/find
 
 <img width="780" alt="Screenshot 2024-03-18 at 10 03 45" src="https://github.com/mani87/cron-parser/assets/88872955/e5208ed9-0673-4b35-91d8-5132d12c8f18">
 
+### Flow Diagram
+<img width="634" alt="Screenshot 2024-03-18 at 15 41 43" src="https://github.com/mani87/cron-parser/assets/88872955/4ef11890-2f57-4492-a498-d2d85e477d7c">
+
+
 ### How to run test cases?
 
 1. Compile the test cases
